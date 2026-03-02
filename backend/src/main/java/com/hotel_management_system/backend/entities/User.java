@@ -1,10 +1,10 @@
 package com.hotel_management_system.backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -17,6 +17,15 @@ public class User {
     private String username;
     private String password;
     private String role; // e.g., ADMIN, STAFF, CUSTOMER
+
+    public User() {
+    }
+
+    public User(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     // Getters and Setters
 }
