@@ -4,7 +4,7 @@ import * as AuthService from "../services/authService";
 const getInitialState = () => {
   const user = localStorage.getItem("user");
   console.log("Loading initial auth state, user from localStorage:", user);
-  
+
   if (user) {
     try {
       const parsedUser = JSON.parse(user);
@@ -15,7 +15,7 @@ const getInitialState = () => {
       return { isLoggedIn: false, user: null };
     }
   }
-  
+
   console.log("Initial state: isLoggedIn=false, no stored user");
   return { isLoggedIn: false, user: null };
 };

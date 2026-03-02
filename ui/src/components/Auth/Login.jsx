@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../store/authSlice";
 
 const Login = () => {
@@ -9,12 +10,12 @@ const Login = () => {
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log("handleLogin called!");
-    alert("Login button clicked!");
-    
+
     if (!username || !password) {
       setMessage("Please enter username and password");
       return;
@@ -27,7 +28,8 @@ const Login = () => {
       console.log("Dispatching login with:", { username, password });
       const result = await dispatch(login({ username, password })).unwrap();
       console.log("Login success:", result);
-      window.location.reload();
+      console.log("Navigating to /rooms");
+      navigate("/rooms", { replace: true });
     } catch (error) {
       console.error("Login failed:", error);
       setLoading(false);
@@ -64,7 +66,11 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+            <button
+              type="submit"
+              className="btn btn-primary btn-block"
+              disabled={loading}
+            >
               {loading && (
                 <span className="spinner-border spinner-border-sm me-2"></span>
               )}
