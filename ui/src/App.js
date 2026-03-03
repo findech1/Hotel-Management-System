@@ -8,8 +8,10 @@ import {
 import { useSelector } from "react-redux";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/SignUp";
+import Dashboard from "./components/Dashboard/Dashboard";
 import RoomList from "./components/Rooms/RoomList";
-import BookingForm from "./components/Bookings/BookingForm";
+import BookingList from "./components/Bookings/BookingList";
+import Navbar from "./components/Navbar/Navbar";
 
 const ProtectedRoute = ({ element, isLoggedIn }) => {
   return isLoggedIn ? element : <Navigate to="/login" replace />;
@@ -21,40 +23,58 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <div className="container">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isLoggedIn ? (
-                  <Navigate to="/rooms" replace />
-                ) : (
-                  <Navigate to="/login" replace />
-                )
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="/rooms"
-              element={
-                <ProtectedRoute
-                  element={<RoomList />}
-                  isLoggedIn={isLoggedIn}
-                />
-              }
-            />
-            <Route
-              path="/bookings"
-              element={
-                <ProtectedRoute
-                  element={<BookingForm />}
-                  isLoggedIn={isLoggedIn}
-                />
-              }
-            />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/dashboard" replace />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute element={<Dashboard />} isLoggedIn={isLoggedIn} />
+            }
+          />
+          <Route
+            path="/rooms"
+            element={
+              <ProtectedRoute
+                element={
+                  <>
+                    <Navbar />
+                    <div className="container-large">
+                      <RoomList />
+                    </div>
+                  </>
+                }
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
+          <Route
+            path="/bookings"
+            element={
+              <ProtectedRoute
+                element={
+                  <>
+                    <Navbar />
+                    <div className="container-large">
+                      <BookingList />
+                    </div>
+                  </>
+                }
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
+        </Routes>
       </div>
     </Router>
   );

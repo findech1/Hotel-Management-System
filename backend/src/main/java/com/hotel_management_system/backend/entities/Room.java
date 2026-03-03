@@ -16,7 +16,7 @@ public class Room {
     private Long id;
     private String type;
     private double price;
-    private boolean isAvailable;
+    private boolean availability;
     private int capacity;
     private String amenities;
 

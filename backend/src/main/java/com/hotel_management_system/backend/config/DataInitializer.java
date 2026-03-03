@@ -52,7 +52,7 @@ public class DataInitializer implements CommandLineRunner {
             room1.setPrice(50.0);
             room1.setCapacity(1);
             room1.setAmenities("WiFi, Air Conditioning, TV");
-            room1.setAvailable(true);
+            room1.setAvailability(true);
             roomRepository.save(room1);
 
             Room room2 = new Room();
@@ -60,7 +60,7 @@ public class DataInitializer implements CommandLineRunner {
             room2.setPrice(80.0);
             room2.setCapacity(2);
             room2.setAmenities("WiFi, Air Conditioning, TV, Mini Bar");
-            room2.setAvailable(true);
+            room2.setAvailability(true);
             roomRepository.save(room2);
 
             Room room3 = new Room();
@@ -68,7 +68,7 @@ public class DataInitializer implements CommandLineRunner {
             room3.setPrice(120.0);
             room3.setCapacity(4);
             room3.setAmenities("WiFi, Air Conditioning, TV, Mini Bar, Kitchen, Jacuzzi");
-            room3.setAvailable(true);
+            room3.setAvailability(true);
             roomRepository.save(room3);
 
             Room room4 = new Room();
@@ -76,7 +76,7 @@ public class DataInitializer implements CommandLineRunner {
             room4.setPrice(150.0);
             room4.setCapacity(2);
             room4.setAmenities("WiFi, Air Conditioning, Smart TV, Wine Bar, Ocean View");
-            room4.setAvailable(true);
+            room4.setAvailability(true);
             roomRepository.save(room4);
 
             Room room5 = new Room();
@@ -84,7 +84,7 @@ public class DataInitializer implements CommandLineRunner {
             room5.setPrice(100.0);
             room5.setCapacity(5);
             room5.setAmenities("WiFi, Air Conditioning, TV, Large Kitchen, Multiple Bathrooms");
-            room5.setAvailable(true);
+            room5.setAvailability(true);
             roomRepository.save(room5);
 
             System.out.println("Sample rooms added to the database!");

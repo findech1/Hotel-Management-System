@@ -47,6 +47,23 @@ public class BookingController {
         }
     }
 
+    @GetMapping("/user")
+    public ResponseEntity<List<Booking>> getUserBookings() {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User user = userRepository.findByUsername(authentication.getName()).orElse(null);
+            
+            if (user == null) {
+                return ResponseEntity.badRequest().build();
+            }
+
+            List<Booking> bookings = bookingRepository.findByUserId(user.getId());
+            return ResponseEntity.ok(bookings);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping("/{userId}")
     public ResponseEntity<List<Booking>> getBookingsByUser(@PathVariable Long userId) {
         List<Booking> bookings = bookingRepository.findByUserId(userId);

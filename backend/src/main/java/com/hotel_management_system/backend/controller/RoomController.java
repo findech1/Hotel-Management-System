@@ -43,7 +43,7 @@ public class RoomController {
                     existingRoom.setPrice(room.getPrice());
                     existingRoom.setCapacity(room.getCapacity());
                     existingRoom.setAmenities(room.getAmenities());
-                    existingRoom.setAvailable(room.isAvailable());
+                    existingRoom.setAvailability(room.isAvailability());
                     return ResponseEntity.ok(roomRepository.save(existingRoom));
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
