@@ -104,116 +104,130 @@ const BookingModal = ({ room, onClose, onSuccess }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        {/* Modal Header */}
-        <div className="modal-header">
-          <h2>Book {room.type} Room</h2>
-          <button className="modal-close" onClick={onClose}>
-            ✕
-          </button>
+    // ╔═══════════════════════════════════════════════════════════╗
+// ║  3. BookingModal.jsx  — EDITABLE JSX SECTION             ║
+// ╚═══════════════════════════════════════════════════════════╝
+ 
+<div className="modal-overlay" onClick={onClose}>
+  <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+ 
+    {/* Modal Header */}
+    <div className="modal-header">
+      <div className="modal-header-text">
+        <div className="modal-eyebrow">New Reservation</div>
+        <h2>Book <em>{room.type}</em></h2>
+      </div>
+      <button className="modal-close" onClick={onClose} aria-label="Close">✕</button>
+    </div>
+ 
+    {/* Modal Body */}
+    <div className="modal-body">
+ 
+      {/* Room Details */}
+      <div className="booking-room-info">
+        <div className="room-info-item">
+          <span className="label">Room Type</span>
+          <span className="value">{room.type}</span>
         </div>
-
-        {/* Modal Body */}
-        <div className="modal-body">
-          {/* Room Details */}
-          <div className="booking-room-info">
-            <div className="room-info-item">
-              <span className="label">Room Type</span>
-              <span className="value">{room.type}</span>
-            </div>
-            <div className="room-info-item">
-              <span className="label">Price per Night</span>
-              <span className="value">${room.price}</span>
-            </div>
-            <div className="room-info-item">
-              <span className="label">Capacity</span>
-              <span className="value">{room.capacity} Guest(s)</span>
-            </div>
-          </div>
-
-          {/* Booking Form */}
-          <form onSubmit={handleBooking} className="booking-form">
-            {/* Error Message */}
-            {error && (
-              <div className="alert alert-danger">
-                <span className="alert-icon">⚠️</span>
-                {error}
-              </div>
-            )}
-
-            {/* Check-in Date */}
-            <div className="form-group">
-              <label htmlFor="startDate" className="form-label">
-                Check-in Date <span className="required">*</span>
-              </label>
-              <input
-                type="date"
-                id="startDate"
-                className="form-control"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                min={getMinDate()}
-                required
-              />
-            </div>
-
-            {/* Check-out Date */}
-            <div className="form-group">
-              <label htmlFor="endDate" className="form-label">
-                Check-out Date <span className="required">*</span>
-              </label>
-              <input
-                type="date"
-                id="endDate"
-                className="form-control"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                min={getMinCheckoutDate()}
-                required
-              />
-            </div>
-
-            {/* Booking Summary */}
-            {startDate && endDate && (
-              <div className="booking-summary">
-                <div className="summary-item">
-                  <span>Nights:</span>
-                  <strong>{calculateNights()}</strong>
-                </div>
-                <div className="summary-item">
-                  <span>Price per Night:</span>
-                  <strong>${room.price}</strong>
-                </div>
-                <div className="summary-total">
-                  <span>Total Price:</span>
-                  <strong>${totalPrice}</strong>
-                </div>
-              </div>
-            )}
-
-            {/* Action Buttons */}
-            <div className="modal-actions">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={onClose}
-                disabled={loading}
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={loading || !startDate || !endDate}
-              >
-                {loading ? "Booking..." : "Confirm Booking"}
-              </button>
-            </div>
-          </form>
+        <div className="room-info-item">
+          <span className="label">Rate per Night</span>
+          <span className="value price">Ksh {Number(room.price).toLocaleString()}</span>
+        </div>
+        <div className="room-info-item">
+          <span className="label">Capacity</span>
+          <span className="value">{room.capacity} Guest{room.capacity !== 1 ? "s" : ""}</span>
         </div>
       </div>
+ 
+      {/* Booking Form */}
+      <form onSubmit={handleBooking} className="booking-form">
+ 
+        {error && (
+          <div className="alert alert-danger">
+            <span className="alert-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </span>
+            {error}
+          </div>
+        )}
+ 
+        {/* Check-in */}
+        <div className="form-group">
+          <label htmlFor="startDate" className="form-label">
+            Check-in Date <span className="required">*</span>
+          </label>
+          <input
+            type="date"
+            id="startDate"
+            className="form-control"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            min={getMinDate()}
+            required
+          />
+        </div>
+ 
+        {/* Check-out */}
+        <div className="form-group">
+          <label htmlFor="endDate" className="form-label">
+            Check-out Date <span className="required">*</span>
+          </label>
+          <input
+            type="date"
+            id="endDate"
+            className="form-control"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            min={getMinCheckoutDate()}
+            required
+          />
+        </div>
+ 
+        {/* Summary */}
+        {startDate && endDate && (
+          <div className="booking-summary">
+            <div className="summary-item">
+              <span>Nights</span>
+              <strong>{calculateNights()}</strong>
+            </div>
+            <div className="summary-item">
+              <span>Rate per Night</span>
+              <strong>Ksh {Number(room.price).toLocaleString()}</strong>
+            </div>
+            <div className="summary-total">
+              <span>Total</span>
+              <strong>Ksh {Number(totalPrice).toLocaleString()}</strong>
+            </div>
+          </div>
+        )}
+ 
+        {/* Actions */}
+        <div className="modal-actions">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onClose}
+            disabled={loading}
+          >
+            <span>Cancel</span>
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={loading || !startDate || !endDate}
+          >
+            <span>{loading ? "Confirming…" : "Confirm Booking"}</span>
+          </button>
+        </div>
+ 
+      </form>
     </div>
+  </div>
+</div>
   );
 };
 

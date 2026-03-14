@@ -1,0 +1,153 @@
+// ─────────────────────────────────────────────────────────────
+// BookingForm.css  (add to your existing Login.css OR new file)
+// ─────────────────────────────────────────────────────────────
+
+.booking-form-page {
+  min-height: calc(100vh - 72px);
+  background: var(--cream);
+  font-family: var(--font-sans);
+}
+ 
+.bf-hero {
+  position: relative;
+  background-color: var(--dark-panel);
+  background-image:
+    linear-gradient(to bottom, rgba(28,26,20,0.35) 0%, rgba(28,26,20,0.80) 100%),
+    url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=80&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center 35%;
+  padding: 4.5rem 2rem 3.5rem;
+  text-align: center;
+}
+ 
+.bf-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+ 
+.bf-hero-inner { max-width: 600px; margin: 0 auto; }
+ 
+.bf-hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.1;
+  margin: 0.5rem 0;
+}
+ 
+.bf-hero-title em { font-style: italic; color: var(--gold-light); }
+ 
+.bf-hero-sub {
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: rgba(247,242,234,0.6);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+ 
+.bf-card-wrap {
+  max-width: 520px;
+  margin: -2rem auto 4rem;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+ 
+.bf-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 2.5rem 2.25rem;
+  animation: fadeSlideUp 0.7s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+}
+ 
+.bf-card-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+ 
+.bf-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 0;
+}
+ 
+.bf-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0.35;
+  margin: 1.25rem 0 1.75rem;
+}
+ 
+.bf-form { display: flex; flex-direction: column; gap: 0; }
+ 
+.select-wrapper { position: relative; }
+.select-arrow {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted);
+}
+.select-arrow svg { width: 15px; height: 15px; }
+ 
+.date-input-wrap { position: relative; display: flex; align-items: center; }
+.date-icon {
+  position: absolute;
+  left: 14px;
+  display: flex; align-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.date-icon svg { width: 15px; height: 15px; stroke: var(--text-light); }
+ 
+.date-input-wrap .form-control { padding-left: 2.75rem; }
+ 
+.btn-book {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--dark);
+  color: var(--cream);
+  border: 1px solid var(--dark);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.btn-book::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+ 
+.btn-book span, .btn-book .btn-arrow { position: relative; z-index: 1; }
+.btn-book:hover::before { transform: scaleX(1); }
+.btn-book:hover { color: var(--dark); border-color: var(--gold); }
+.btn-arrow { font-size: 1rem; transition: transform 0.3s ease; }
+.btn-book:hover .btn-arrow { transform: translateX(4px); }
