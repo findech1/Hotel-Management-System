@@ -32,7 +32,7 @@ To get a local copy up and running follow these simple steps:
 
 1. Clone the repo
    ```
-   git clone https://github.com/your_username/hotel-management-system.git
+   git clone https://github.com/findech1/hotel-management-system.git
    cd hotel-management-system
    ```
 

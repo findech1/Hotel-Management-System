@@ -736,6 +736,35 @@
   border-bottom-color: var(--gold);
 }
 
+/* ── Signup Link Container (in Login page) ────────────────── */
+.signup-link-container {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.signup-link-container p {
+  margin: 0;
+}
+
+.signup-link {
+  color: var(--gold-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease;
+  border-bottom: 1px solid rgba(184, 147, 90, 0.3);
+  padding-bottom: 1px;
+}
+
+.signup-link:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
 /* ══════════════════════════════════════════════════════════
    ANIMATIONS
    ══════════════════════════════════════════════════════════ */

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../store/authSlice";
+import "./Login.css";
 
 const Signup = () => {
 	const [username, setUsername] = useState("");
@@ -9,6 +11,7 @@ const Signup = () => {
 	const [message, setMessage] = useState("");
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleRegister = (e) => {
 		e.preventDefault();
@@ -20,11 +23,14 @@ const Signup = () => {
 			.unwrap()
 			.then(() => {
 				setSuccessful(true);
-				setMessage("Registration successful");
+				setMessage("Registration successful! Redirecting to login...");
+				setTimeout(() => {
+					navigate("/login", { replace: true });
+				}, 1500);
 			})
-			.catch(() => {
+			.catch((error) => {
 				setSuccessful(false);
-				setMessage("Failed to register");
+				setMessage(error || "Failed to register");
 			});
 	};
 

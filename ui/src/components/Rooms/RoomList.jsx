@@ -123,7 +123,9 @@ const RoomList = () => {
             <div key={room.id} className="room-card-wrapper">
               <div className="room-card">
                 <div className="room-header">
-                  <div className="room-emoji">{roomService.getRoomEmoji(room.type)}</div>
+                  <div className="room-emoji">
+                    {roomService.getRoomEmoji(room.type)}
+                  </div>
                   <span
                     className={`availability-badge ${
                       room.availability ? "available" : "booked"
@@ -138,7 +140,9 @@ const RoomList = () => {
                   <div className="room-info">
                     <div className="info-item">
                       <span className="label">Price</span>
-                      <span className="value">${room.price}/night</span>
+                      <span className="value">
+                        Ksh {Number(room.price).toLocaleString()}/night
+                      </span>
                     </div>
                     <div className="info-item">
                       <span className="label">Capacity</span>
